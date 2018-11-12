@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.optimizer.tooltips.TipsManager
-import com.optimizer.tooltips.TooltipLayout
 import com.optimizer.tooltips.animations.AnimationComposer
 import com.optimizer.tooltips.animations.fading_in.FadeInAnimator
 import com.optimizer.tooltips.animations.fading_out.FadeOutAnimator
