@@ -22,7 +22,7 @@ import tooltips.optimizer.com.databinding.ActivityMainBinding
 import java.util.*
 import java.util.concurrent.LinkedBlockingQueue
 
-const val ANIM_DURATION = 500L
+const val ANIM_DURATION = 300L
 
 class MainActivity : AppCompatActivity() {
 

@@ -5,3 +5,6 @@ There are several implementations of the animations or you can easily extend exi
 
 ![](example.gif)
 
+# Usage
+
+[![](https://jitpack.io/v/mpetlyuk/initial_tips.svg)](https://jitpack.io/#mpetlyuk/initial_tips)
