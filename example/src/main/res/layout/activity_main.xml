@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/rootContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <FrameLayout
+            android:id="@+id/frameActionbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/ivActionbarMenu"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="start"
+                android:padding="@dimen/actionbar_icon_padding"
+                app:srcCompat="@drawable/ic_menu_white"/>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/ivActionbarMore"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="end"
+                android:padding="@dimen/actionbar_icon_padding"
+                app:srcCompat="@drawable/ic_more_white"/>
+
+        </FrameLayout>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/tvContent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#ffffff"
+            app:layout_constraintBottom_toTopOf="@+id/containerBottomNavigation"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameActionbar"
+            app:srcCompat="@drawable/image_back"/>
+
+        <LinearLayout
+            android:id="@+id/containerBottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvContent">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/ivTabGallery"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:padding="@dimen/actionbar_icon_padding"
+                app:srcCompat="@drawable/ic_inbox_white"/>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/ivTabCamera"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:padding="@dimen/actionbar_icon_padding"
+                app:srcCompat="@drawable/ic_camera_white"/>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/ivTabSource"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:padding="@dimen/actionbar_icon_padding"
+                app:srcCompat="@drawable/ic_cast_black_24dp"/>
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
