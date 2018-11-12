@@ -15,16 +15,16 @@ There are several implementations of the animations or you can easily extend exi
 Add it in your root build.gradle at the end of repositories:
 ```groovy
 allprojects {
-		repositories {
-			maven { url 'https://jitpack.io' }
-		}
-	}
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
 
 #### Step 2:
 Add the dependency
 ```groovy
 dependencies {
-        implementation 'com.github.mpetlyuk:initial_tips:$latest_version'
+    implementation 'com.github.mpetlyuk:initial_tips:$latest_version'
 }
 ```
