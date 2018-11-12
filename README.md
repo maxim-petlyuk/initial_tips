@@ -5,6 +5,26 @@ There are several implementations of the animations or you can easily extend exi
 
 ![](example.gif)
 
-# Usage
+# Download
 
 [![](https://jitpack.io/v/mpetlyuk/initial_tips.svg)](https://jitpack.io/#mpetlyuk/initial_tips)
+
+## Gradle
+
+#### Step 1:
+Add it in your root build.gradle at the end of repositories:
+```groovy
+allprojects {
+		repositories {
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
+#### Step 2:
+Add the dependency
+```groovy
+dependencies {
+        implementation 'com.github.mpetlyuk:initial_tips:$latest_version'
+}
+```
