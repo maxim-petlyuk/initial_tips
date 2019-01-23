@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.optimizer.tooltips.animations.AnimatorCallback
-import com.optimizer.tooltips.optimizer.R
+import com.optimizer.tooltips.R
 import com.optimizer.tooltips.tips.Tip
 import java.lang.ref.WeakReference
 import java.util.*

@@ -34,53 +34,63 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createTipsQueue(inflater: LayoutInflater, binding: ActivityMainBinding): Queue<Tip> {
+        val menuTipView = createTipView(inflater)
+        menuTipView.background = ContextCompat.getDrawable(this, R.drawable.shape_tooltip_window_purple)
+        menuTipView.text = "This is menu button. Click on it to open menu!"
+
         val actionbarMenuTooltip = ButtonTip.Builder()
-                .attachTooltipView(createTipView(inflater))
+                .attachTooltipView(menuTipView)
                 .withEnterAnimation(AnimationComposer(FadeInAnimator()).duration(ANIM_DURATION))
                 .withExitAnimation(AnimationComposer(FadeOutAnimator()).duration(ANIM_DURATION))
-                .withBackround(ContextCompat.getDrawable(this, R.drawable.shape_tooltip_window_purple)!!)
-                .withText("This is menu button. Click on it to open menu!")
                 .withPositionStrategy(TooltipFactory.createPositionStrategy(TooltipPosition.BOTTOM, TipGravity.LEFT))
                 .withAnchorView(binding.ivActionbarMenu)
                 .buildTooltip()
 
+        val moreTipView = createTipView(inflater)
+        moreTipView.background = ContextCompat.getDrawable(this, R.drawable.shape_tooltip_window_red)
+        moreTipView.text = "This is more button. Click on it to expand menu!"
+
         val actionbarMoreTooltip = ButtonTip.Builder()
-                .attachTooltipView(createTipView(inflater))
+                .attachTooltipView(moreTipView)
                 .withEnterAnimation(AnimationComposer(FadeInAnimator()).duration(ANIM_DURATION))
                 .withExitAnimation(AnimationComposer(FadeOutAnimator()).duration(ANIM_DURATION))
-                .withBackround(ContextCompat.getDrawable(this, R.drawable.shape_tooltip_window_red)!!)
-                .withText("This is more button. Click on it to expand menu!")
                 .withPositionStrategy(TooltipFactory.createPositionStrategy(TooltipPosition.BOTTOM, TipGravity.RIGHT))
                 .withAnchorView(binding.ivActionbarMore)
                 .buildTooltip()
 
+        val galleryTipView = createTipView(inflater)
+        galleryTipView.background = ContextCompat.getDrawable(this, R.drawable.shape_tooltip_window_red)
+        galleryTipView.text = "This is gallery tab"
+
         val tabGalleryTooltip = ButtonTip.Builder()
-                .attachTooltipView(createTipView(inflater))
+                .attachTooltipView(galleryTipView)
                 .withEnterAnimation(AnimationComposer(FadeInAnimator()).duration(300))
                 .withExitAnimation(AnimationComposer(FadeOutAnimator()).duration(300))
-                .withBackround(ContextCompat.getDrawable(this, R.drawable.shape_tooltip_window_red)!!)
-                .withText("This is gallery tab")
                 .withPositionStrategy(TooltipFactory.createPositionStrategy(TooltipPosition.TOP, TipGravity.LEFT))
                 .withAnchorView(binding.ivTabGallery)
                 .buildTooltip()
 
+        val cameraTipView = createTipView(inflater)
+        cameraTipView.background = ContextCompat.getDrawable(this, R.drawable.shape_tooltip_window_red)
+        cameraTipView.text = "This is camera tab"
+
         val tabGameraTooltip = ButtonTip.Builder()
-                .attachTooltipView(createTipView(inflater))
+                .attachTooltipView(cameraTipView)
                 .withEnterAnimation(AnimationComposer(FadeInAnimator()).duration(ANIM_DURATION))
                 .withExitAnimation(AnimationComposer(FadeOutAnimator()).duration(ANIM_DURATION))
-                .withBackround(ContextCompat.getDrawable(this, R.drawable.shape_tooltip_window_red)!!)
                 .withPositionStrategy(TooltipFactory.createPositionStrategy(TooltipPosition.TOP, TipGravity.CENTER))
-                .withText("This is camera tab")
                 .withAnchorView(binding.ivTabCamera)
                 .buildTooltip()
 
+        val sourceTipView = createTipView(inflater)
+        sourceTipView.background = ContextCompat.getDrawable(this, R.drawable.shape_tooltip_window_red)
+        sourceTipView.text = "This is just another tab"
+
         val tabSourceTooltip = ButtonTip.Builder()
-                .attachTooltipView(createTipView(inflater))
+                .attachTooltipView(sourceTipView)
                 .withEnterAnimation(AnimationComposer(FadeInAnimator()).duration(ANIM_DURATION))
                 .withExitAnimation(AnimationComposer(FadeOutAnimator()).duration(ANIM_DURATION))
-                .withBackround(ContextCompat.getDrawable(this, R.drawable.shape_tooltip_window_red)!!)
                 .withPositionStrategy(TooltipFactory.createPositionStrategy(TooltipPosition.TOP, TipGravity.RIGHT))
-                .withText("This is just another tab")
                 .withAnchorView(binding.ivTabSource)
                 .buildTooltip()
 

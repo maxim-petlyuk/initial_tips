@@ -1,15 +1,15 @@
 package com.optimizer.tooltips
 
 import android.util.AttributeSet
+import android.util.Xml
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import com.optimizer.tooltips.tips.Tip
 import java.util.*
-import android.util.Xml
-import com.optimizer.tooltips.optimizer.R
 
 object TipsManager {
 
+    @JvmStatic
     fun showTips(viewGroup: ViewGroup, tipsQueue: () -> Queue<Tip>) {
         viewGroup.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {

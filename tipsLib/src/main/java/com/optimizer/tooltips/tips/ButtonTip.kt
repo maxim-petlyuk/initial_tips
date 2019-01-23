@@ -1,44 +1,15 @@
 package com.optimizer.tooltips.tips
 
-import android.graphics.drawable.Drawable
 import android.view.View
-import android.widget.TextView
 import com.optimizer.tooltips.animations.AnimationComposer
 import com.optimizer.tooltips.animations.BaseViewAnimator
-
 import com.optimizer.tooltips.positionStrategy.strategies.PositionStrategy
 
-class ButtonTip private constructor(builder: Builder) : Tooltip<TextView>(builder) {
+class ButtonTip private constructor(builder: Builder) : Tooltip<View>(builder) {
 
-    private val mBackground: Drawable?
-    private val mText: String?
+    class Builder : AbstractBuilder<View>() {
 
-    init {
-        mBackground = builder.background
-        mText = builder.text
-    }
-
-    override fun decorateView() {
-        tooltipView.setBackground(mBackground)
-        tooltipView.text = mText
-    }
-
-    class Builder : AbstractBuilder<TextView>() {
-
-        lateinit var text: String
-        var background: Drawable? = null
-
-        fun withBackround(drawable: Drawable): Builder {
-            this.background = drawable
-            return this
-        }
-
-        fun withText(text: String): Builder {
-            this.text = text
-            return this
-        }
-
-        override fun attachTooltipView(view: TextView): Builder {
+        override fun attachTooltipView(view: View): Builder {
             return super.attachTooltipView(view) as Builder
         }
 
