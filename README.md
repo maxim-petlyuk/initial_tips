@@ -28,3 +28,11 @@ dependencies {
     implementation 'com.github.mpetlyuk:initial_tips:$latest_version'
 }
 ```
+
+# Usage
+1. Create view for your tip
+```kotlin
+val inflater = LayoutInflater.from(Context)
+val tipView = DataBindingUtil.inflate<ViewDataBinding>(inflater, R.layout.item_tooltip, null, false).getRoot()
+/* Decorate your tip view according to your wishes */
+```

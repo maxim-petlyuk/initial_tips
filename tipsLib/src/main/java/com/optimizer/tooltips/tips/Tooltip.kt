@@ -51,8 +51,7 @@ abstract class Tooltip<V : View>(builder: AbstractBuilder<V>) : Tip {
         this.y = y
     }
 
-    override fun decorateView() {
-    }
+    override fun decorateView() {}
 
     override fun invalidate() {
         tooltipView.x = x
