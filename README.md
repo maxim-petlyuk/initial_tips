@@ -57,3 +57,9 @@ val tooltipsQueue = LinkedBlockingQueue<Tip>(listOf(tip))
 ```kotlin
 TipsManager.showTips(binding.root as ViewGroup) { tooltipsQueue }
 ```
+
+# Feedback
+I will be pleased to know if this library is useful to someone. I want to improve this library and fill with features. 
+Especially if these features are needed by someone. That`s why feel free to create issues in the repo with 'enhancement' label.  
+
+
