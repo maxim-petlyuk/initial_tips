@@ -30,9 +30,30 @@ dependencies {
 ```
 
 # Usage
-1. Create view for your tip
+1. Create view for your tip:
 ```kotlin
 val inflater = LayoutInflater.from(Context)
 val tipView = DataBindingUtil.inflate<ViewDataBinding>(inflater, R.layout.item_tooltip, null, false).getRoot()
 /* Decorate your tip view according to your wishes */
+```
+
+2. Create tip:
+```kotlin
+val tip = ButtonTip.Builder()
+    .attachTooltipView(tipView)
+    .withEnterAnimation(AnimationComposer(FadeInAnimator()).duration(ANIM_DURATION))
+    .withExitAnimation(AnimationComposer(FadeOutAnimator()).duration(ANIM_DURATION))
+    .withPositionStrategy(TooltipFactory.createPositionStrategy(TooltipPosition.BOTTOM, TipGravity.LEFT))
+    .withAnchorView(/* anchor view */)
+    .buildTooltip()
+```
+
+3. Create a queue of tips:
+```kotlin
+val tooltipsQueue = LinkedBlockingQueue<Tip>(listOf(tip))
+```
+
+4. Show tips:
+```kotlin
+TipsManager.showTips(binding.root as ViewGroup) { tooltipsQueue }
 ```
