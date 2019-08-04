@@ -5,32 +5,21 @@ import android.view.View
 import com.optimizer.tooltips.CloneView
 import com.optimizer.tooltips.animations.AnimationComposer
 import com.optimizer.tooltips.animations.BaseViewAnimator
-import com.optimizer.tooltips.positionStrategy.strategies.PositionStrategy
+import com.optimizer.tooltips.ext.getStatusBarHeight
+import com.optimizer.tooltips.position.PositionStrategyFactory
+import com.optimizer.tooltips.position.TipHorizontalGravity
+import com.optimizer.tooltips.position.TipVerticalGravity
+import com.optimizer.tooltips.position.strategies.PositionStrategy
 
-abstract class Tooltip<V : View>(builder: AbstractBuilder<V>) : Tip {
+class Tooltip(builder: Builder) : Tip {
 
-    var x: Float = 0.toFloat()
-        private set
-
-    var y: Float = 0.toFloat()
-        private set
-
-    var anchorX: Float = 0.toFloat()
-        private set
-
-    var anchorY: Float = 0.toFloat()
-        private set
-
-    var anchorView: View
-        private set
-
-    var positionStrategy: PositionStrategy
-
-    var tooltipView: V
-
-    var enterAnimator: AnimationComposer<BaseViewAnimator>? = null
-
-    var exitAnimator: AnimationComposer<BaseViewAnimator>? = null
+    val anchorX: Float
+    val anchorY: Float
+    val anchorView: View
+    val tooltipView: View
+    private var positionStrategy: PositionStrategy
+    private var enterAnimator: AnimationComposer<BaseViewAnimator>? = null
+    private var exitAnimator: AnimationComposer<BaseViewAnimator>? = null
 
     init {
         tooltipView = builder.tooltipView
@@ -42,90 +31,71 @@ abstract class Tooltip<V : View>(builder: AbstractBuilder<V>) : Tip {
         exitAnimator = builder.exitAnimation
     }
 
-    fun attachAnchorView(anchorView: View) {
-        this.anchorView = anchorView
-    }
-
-    fun updateLocation(x: Float, y: Float) {
-        this.x = x
-        this.y = y
-    }
-
-    override fun decorateView() {}
-
-    override fun invalidate() {
-        tooltipView.x = x
-        tooltipView.y = y
-    }
-
-    override fun getTipView(): View {
-        return tooltipView
-    }
+    override fun getTipView() = tooltipView
 
     override fun calculatePosition() {
-        positionStrategy.calculatePosition(this, tooltipView)
+        val position = positionStrategy.calculatePosition(this, tooltipView)
+        tooltipView.x = position.x
+        tooltipView.y = position.y
     }
 
-    override fun getEnterAnimation(): AnimationComposer<BaseViewAnimator>? = enterAnimator
+    override fun getEnterAnimation() = enterAnimator
 
-    override fun getExitAnimation(): AnimationComposer<BaseViewAnimator>? = exitAnimator
+    override fun getExitAnimation() = exitAnimator
 
-    override fun createCloneOfTipView(context: Context): View {
-        val cloneView = CloneView(context)
-        cloneView.source = anchorView
-        cloneView.x = anchorX
-        cloneView.y = anchorY
-        return cloneView
+    override fun createCloneOfAnchorView(context: Context) = CloneView(context).also {
+        it.source = anchorView
+        it.x = anchorX
+        it.y = anchorY
     }
 
-    abstract class AbstractBuilder<V : View> {
+    class Builder {
 
         lateinit var positionStrategy: PositionStrategy
         lateinit var anchorView: View
-        lateinit var tooltipView: V
+        lateinit var tooltipView: View
         var anchorX: Float = 0F
         var anchorY: Float = 0F
         var enterAnimation: AnimationComposer<BaseViewAnimator>? = null
         var exitAnimation: AnimationComposer<BaseViewAnimator>? = null
 
-        open fun withEnterAnimation(animator: AnimationComposer<BaseViewAnimator>): AbstractBuilder<V> {
+        fun withEnterAnimation(animator: AnimationComposer<BaseViewAnimator>): Builder {
             this.enterAnimation = animator
             return this
         }
 
-        open fun withExitAnimation(animator: AnimationComposer<BaseViewAnimator>): AbstractBuilder<V> {
+        fun withExitAnimation(animator: AnimationComposer<BaseViewAnimator>): Builder {
             this.exitAnimation = animator
             return this
         }
 
-        open fun attachTooltipView(view: V): AbstractBuilder<V> {
+        fun attachTooltipView(view: View): Builder {
             this.tooltipView = view
             return this
         }
 
-        open fun withPositionStrategy(strategy: PositionStrategy): AbstractBuilder<V> {
-            this.positionStrategy = strategy
+        fun withGravity(verticalGravity: TipVerticalGravity, horizontalGravity: TipHorizontalGravity): Builder {
+            this.positionStrategy = PositionStrategyFactory.createPositionStrategy(verticalGravity, horizontalGravity)
             return this
         }
 
-        open fun withAnchorView(anchorView: View): AbstractBuilder<V> {
+        fun withAnchorView(anchorView: View): Builder {
             this.anchorView = anchorView
             calculateAnchorCoordinates(anchorView)
             return this
         }
 
-        private fun calculateAnchorCoordinates(anchorView: View): AbstractBuilder<V> {
+        fun build(): Tooltip {
+            return Tooltip(this)
+        }
+
+        private fun calculateAnchorCoordinates(anchorView: View): Builder {
             val viewLocation = IntArray(2)
             anchorView.getLocationInWindow(viewLocation)
 
             anchorX = viewLocation[0].toFloat()
-            anchorY = (viewLocation[1] - getStatusBarHeight(anchorView.context)).toFloat()
+            anchorY = (viewLocation[1] - anchorView.context.getStatusBarHeight()).toFloat()
             return this
-        }
-
-        private fun getStatusBarHeight(context: Context): Int {
-            val resourceId = context.resources.getIdentifier("status_bar_height", "dimen", "android")
-            return if (resourceId > 0) context.resources.getDimensionPixelSize(resourceId) else 0
         }
     }
 }

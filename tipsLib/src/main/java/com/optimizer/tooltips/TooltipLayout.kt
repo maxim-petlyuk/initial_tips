@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.optimizer.tooltips.animations.AnimatorCallback
-import com.optimizer.tooltips.R
 import com.optimizer.tooltips.tips.Tip
 import java.lang.ref.WeakReference
 import java.util.*
@@ -38,7 +37,6 @@ class TooltipLayout @JvmOverloads constructor(context: Context, attrs: Attribute
 
         val tooltipView = tip.getTipView()
         tooltipView.addOnLayoutChangeListener(TooltipViewLayoutChangeListener(tip))
-        tip.decorateView()
 
         setOnClickListener {
             removePreviousTooltip { renderTooltips(tipsQueue) }
@@ -93,10 +91,9 @@ class TooltipLayout @JvmOverloads constructor(context: Context, attrs: Attribute
 
             tipRef.get()?.let { tip ->
                 tip.calculatePosition()
-                tip.invalidate()
 
                 post {
-                    addView(tip.createCloneOfTipView(context))
+                    addView(tip.createCloneOfAnchorView(context))
                 }
             }
         }

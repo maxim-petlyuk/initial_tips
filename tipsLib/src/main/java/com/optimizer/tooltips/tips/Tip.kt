@@ -13,11 +13,7 @@ interface Tip {
 
     fun getTipView(): View
 
-    fun invalidate()
-
     fun calculatePosition()
 
-    fun decorateView()
-
-    fun createCloneOfTipView(context: Context): View
+    fun createCloneOfAnchorView(context: Context): View
 }

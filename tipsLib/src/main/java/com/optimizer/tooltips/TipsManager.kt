@@ -20,7 +20,6 @@ object TipsManager {
     }
 
     private fun addTipsLayout(viewGroup: ViewGroup, tipsQueue: Queue<Tip>) {
-
         val tooltipLayout = TooltipLayout(viewGroup.context)
         tooltipLayout.renderTooltips(tipsQueue)
         tooltipLayout.layoutParams = viewGroup.generateLayoutParams(fakeAttributeSet(viewGroup))
