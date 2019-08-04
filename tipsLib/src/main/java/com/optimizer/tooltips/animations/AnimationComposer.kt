@@ -2,19 +2,18 @@ package com.optimizer.tooltips.animations
 
 import android.animation.Animator
 import android.animation.ValueAnimator
-import android.support.v4.view.ViewCompat
 import android.view.View
 import android.view.animation.Interpolator
 import com.optimizer.tooltips.animations.BaseViewAnimator.Companion.DURATION
-import java.util.ArrayList
+import java.util.*
 
 interface AnimatorCallback {
     fun call(animator: Animator)
 }
 
-private val NO_DELAY: Long = 0
-private val INFINITE = -1
-private val CENTER_PIVOT = Float.MAX_VALUE
+private const val NO_DELAY: Long = 0
+private const val INFINITE = -1
+private const val CENTER_PIVOT = -1f
 
 class AnimationComposer<out Animation : BaseViewAnimator>(animation: Animation) {
 
@@ -125,8 +124,8 @@ class AnimationComposer<out Animation : BaseViewAnimator>(animation: Animation) 
     private fun play(): BaseViewAnimator {
         animator.setTarget(target)
 
-        target.pivotX = if (pivotX == CENTER_PIVOT) target.getMeasuredWidth() / 2.0f else pivotX
-        target.pivotY = if (pivotY == CENTER_PIVOT) target.getMeasuredHeight() / 2.0f else pivotY
+        target.pivotX = if (pivotX == CENTER_PIVOT) target.measuredWidth / 2.0f else pivotX
+        target.pivotY = if (pivotY == CENTER_PIVOT) target.measuredHeight / 2.0f else pivotY
 
         animator.setDuration(duration)
                 .setRepeatTimes(repeatTimes)
@@ -140,6 +139,7 @@ class AnimationComposer<out Animation : BaseViewAnimator>(animation: Animation) 
                 animator.addAnimatorListener(callback)
             }
         }
+
         animator.animate()
         return animator
     }

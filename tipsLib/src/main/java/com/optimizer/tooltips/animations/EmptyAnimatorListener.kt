@@ -3,6 +3,7 @@ package com.optimizer.tooltips.animations
 import android.animation.Animator
 
 internal open class EmptyAnimatorListener : Animator.AnimatorListener {
+
     override fun onAnimationStart(animation: Animator) {}
 
     override fun onAnimationEnd(animation: Animator) {}

@@ -56,7 +56,7 @@ class TooltipLayout @JvmOverloads constructor(context: Context, attrs: Attribute
     }
 
     private fun setDefaultLayoutParams(tooltipView: View) {
-        tooltipView.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+        tooltipView.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
     }
 
     private fun removePreviousTooltip(onNext: () -> Unit) {
@@ -82,7 +82,7 @@ class TooltipLayout @JvmOverloads constructor(context: Context, attrs: Attribute
         }
     }
 
-    private inner class TooltipViewLayoutChangeListener constructor(tip: Tip) : View.OnLayoutChangeListener {
+    private inner class TooltipViewLayoutChangeListener constructor(tip: Tip) : OnLayoutChangeListener {
 
         private val tipRef: WeakReference<Tip> = WeakReference(tip)
 
