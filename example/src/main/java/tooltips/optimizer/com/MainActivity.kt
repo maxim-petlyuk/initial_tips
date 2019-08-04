@@ -29,7 +29,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        TipsManager.showTips(binding.root as ViewGroup) { createTipsQueue(LayoutInflater.from(this), binding) }
+        TipsManager.showTips(binding.root as ViewGroup, ContextCompat.getColor(this, com.optimizer.tooltips.R.color.black_30)) {
+            createTipsQueue(LayoutInflater.from(this), binding)
+        }
     }
 
     private fun createTipsQueue(inflater: LayoutInflater, binding: ActivityMainBinding): Queue<Tip> {

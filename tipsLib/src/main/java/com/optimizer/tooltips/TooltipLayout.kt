@@ -2,7 +2,6 @@ package com.optimizer.tooltips
 
 import android.animation.Animator
 import android.content.Context
-import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
@@ -17,14 +16,6 @@ class TooltipLayout @JvmOverloads constructor(context: Context, attrs: Attribute
 
     private var tipsQueue: Queue<Tip>? = null
     private var currentTip: Tip? = null
-
-    init {
-        initialize()
-    }
-
-    private fun initialize() {
-        setBackgroundColor(ContextCompat.getColor(context, R.color.black_30))
-    }
 
     fun renderTooltips(tooltipsQueue: Queue<Tip>?): Unit {
         tipsQueue = tooltipsQueue
