@@ -39,13 +39,13 @@ val tipView = DataBindingUtil.inflate<ViewDataBinding>(inflater, R.layout.item_t
 
 2. Create tip:
 ```kotlin
-val tip = ButtonTip.Builder()
+val tip = Tooltip.Builder()
     .attachTooltipView(tipView)
     .withEnterAnimation(AnimationComposer(FadeInAnimator()).duration(ANIM_DURATION))
     .withExitAnimation(AnimationComposer(FadeOutAnimator()).duration(ANIM_DURATION))
-    .withPositionStrategy(TooltipFactory.createPositionStrategy(TooltipPosition.BOTTOM, TipGravity.LEFT))
+    .withGravity(TipVerticalGravity.BOTTOM, TipHorizontalGravity.LEFT)
     .withAnchorView(/* anchor view */)
-    .buildTooltip()
+    .build()
 ```
 
 3. Create a queue of tips:
@@ -55,7 +55,7 @@ val tooltipsQueue = LinkedBlockingQueue<Tip>(listOf(tip))
 
 4. Show tips:
 ```kotlin
-TipsManager.showTips(binding.root as ViewGroup) { tooltipsQueue }
+TipsManager.showTips(binding.root as ViewGroup, ContextCompat.getColor(this, 0 /* your resource color for dimming */)) { tooltipsQueue }
 ```
 
 # Feedback
